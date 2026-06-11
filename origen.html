@@ -33,7 +33,7 @@
   .menu a:hover,.menu a.activo{opacity:1;color:var(--oro)}
   .carrito{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:1px solid var(--oro);color:var(--oro);padding:.45rem 1.1rem;transition:background .3s,color .3s}
   .carrito:hover{background:var(--oro);color:var(--nero)}
-  @media(max-width:760px){.menu{display:none}}
+  
 
   /* ===== HERO ===== */
   .hero-origen{
@@ -116,6 +116,37 @@
   }
   .wa-flotante:hover{transform:scale(1.1);box-shadow:0 12px 30px rgba(37,211,102,.45)}
   .wa-flotante svg{width:30px;height:30px;fill:#fff}
+
+  /* ===== HAMBURGER (móvil) ===== */
+  .ham-check{display:none}
+  .ham-btn{display:none;cursor:pointer;padding:.4rem;border:none;background:none}
+  .ham-btn span{display:block;width:24px;height:2px;background:var(--crema);margin:5px 0;transition:transform .3s,opacity .3s}
+  @media(max-width:760px){
+    .ham-btn{display:block}
+    .menu{
+      display:flex;flex-direction:column;gap:0;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--nero);border-top:1px solid rgba(201,151,74,.25);
+      max-height:0;overflow:hidden;transition:max-height .4s ease;
+    }
+    .menu a{padding:1.05rem 6vw;border-bottom:1px solid rgba(243,233,215,.08)}
+    .ham-check:checked ~ .menu{max-height:300px}
+    .ham-check:checked ~ .ham-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .ham-check:checked ~ .ham-btn span:nth-child(2){opacity:0}
+    .ham-check:checked ~ .ham-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-int{position:relative;flex-wrap:wrap}
+    .carrito{font-size:.62rem;padding:.4rem .7rem;letter-spacing:.12em}
+  }
+  /* ===== Ajustes móviles generales ===== */
+  @media(max-width:600px){
+    .hero-banner,.hero-origen{padding:6.5rem 7vw 5.5rem}
+    .seccion{padding:4rem 6vw}
+    .grilla{gap:1.6rem}
+    .wa-flotante{width:50px;height:50px;bottom:18px;right:18px}
+    .wa-flotante svg{width:26px;height:26px}
+    .foot-int{text-align:center}
+    .foot-int .marca-foot svg{margin-left:auto;margin-right:auto}
+  }
 </style>
 </head>
 <body>
@@ -133,6 +164,8 @@
       </svg>
       <span>DOLCE DIAVOLO</span>
     </a>
+    <input type="checkbox" id="ham" class="ham-check" aria-label="Abrir menú">
+    <label for="ham" class="ham-btn" aria-hidden="true"><span></span><span></span><span></span></label>
     <nav class="menu">
       <a href="index.html">Inicio</a>
       <a href="tienda.html">Tienda</a>
