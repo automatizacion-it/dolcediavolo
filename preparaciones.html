@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rituali — Preparaciones | Dolce Diavolo</title>
+<meta name="description" content="Los rituales del café Dolce Diavolo: del espresso infernal al cold brew angelical. Ratios, molienda, tiempos y pasos de cada método de preparación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nero:#0d0806;
+    --brace:#1f0c08;
+    --inferno:#9e2b25;
+    --ember:#c2452d;
+    --oro:#c9974a;
+    --crema:#f3e9d7;
+    --crema-suave:#efe2cb;
+    --tinta:#241510;
+    --t-lento:1.4s;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Jost',sans-serif;font-weight:300;
+    background:var(--nero);color:var(--crema);
+    transition:background var(--t-lento) ease,color var(--t-lento) ease;
+    overflow-x:hidden;line-height:1.7;
+  }
+  body.fase-nero{background:var(--nero);color:var(--crema)}
+  body.fase-inferno{background:var(--brace);color:var(--crema)}
+  body.fase-medio{background:#3a2417;color:var(--crema)}
+  body.fase-angelo{background:var(--crema);color:var(--tinta)}
+  body.fase-amore{background:var(--crema-suave);color:var(--tinta)}
+
+  h1,h2,h3{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.12em}
+  .corsivo{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500}
+  .ojo{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;opacity:.55;margin-bottom:1.4rem;font-weight:400}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.1rem 6vw;
+    backdrop-filter:blur(8px);
+    font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+  }
+  nav .logo-nav{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:inherit}
+  nav .logo-nav svg{width:30px;height:auto}
+  nav .logo-nav span{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.18em;font-size:.78rem}
+  nav a.volver{color:inherit;text-decoration:none;opacity:.7;transition:opacity .3s}
+  nav a.volver:hover{opacity:1}
+
+  /* ===== HERO ===== */
+  section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16vh 8vw;text-align:center;position:relative}
+  .hero h1{font-size:clamp(2.2rem,6.8vw,4.6rem);font-weight:700;line-height:1.08}
+  .hero h1 .rit{color:var(--oro)}
+  .hero .sotto{font-size:clamp(.78rem,2vw,.95rem);letter-spacing:.5em;text-transform:uppercase;margin-top:1.5rem;opacity:.75}
+  .hero .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.05rem,2.5vw,1.4rem);margin-top:3rem;max-width:38ch;opacity:.85}
+  .hero .desliza{position:absolute;bottom:5vh;font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;opacity:.45;animation:flota 2.6s ease-in-out infinite}
+  @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* escala diablo→ángel */
+  .escala{display:flex;align-items:center;gap:1rem;margin-top:2.6rem;font-size:1.4rem}
+  .escala .linea{width:clamp(80px,18vw,180px);height:1px;background:linear-gradient(90deg,var(--ember),var(--oro))}
+
+  /* ===== RITUAL (cada método) ===== */
+  .ritual{align-items:center}
+  .ritual .contenido{max-width:760px;width:100%}
+  .ritual .grado{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;letter-spacing:.26em;opacity:.55;margin-bottom:.7rem}
+  .ritual h2{font-size:clamp(1.7rem,5vw,3rem);line-height:1.15}
+  .ritual .alias{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.4vw,1.3rem);margin-top:.8rem;opacity:.7}
+  .ritual p.historia{max-width:54ch;margin:2.2rem auto 0;font-size:clamp(.93rem,2vw,1.05rem);opacity:.85}
+
+  .ficha{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:1.4rem;margin-top:2.8rem;padding:1.8rem 1.4rem;
+    border-top:1px solid currentColor;border-bottom:1px solid currentColor;
+  }
+  .ficha .item .valor{font-family:'Cinzel',serif;font-size:clamp(1rem,2.6vw,1.4rem);font-weight:600}
+  .ficha .item .clave{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;opacity:.55;margin-top:.35rem}
+
+  .pasos{margin-top:2.6rem;text-align:left;max-width:560px;margin-left:auto;margin-right:auto}
+  .pasos .paso{
+    display:flex;gap:1.2rem;align-items:baseline;
+    padding:.85rem 0;border-bottom:1px dashed rgba(128,128,128,.35);
+    font-size:.94rem;
+  }
+  .pasos .paso:last-child{border-bottom:none}
+  .pasos .paso .n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;opacity:.55;min-width:1.4rem}
+
+  .acento-inferno h2{color:var(--ember)}
+  .acento-oro h2{color:var(--oro)}
+
+  .revela{opacity:0;transform:translateY(34px);transition:opacity 1.1s ease,transform 1.1s ease}
+  .revela.visible{opacity:1;transform:translateY(0)}
+
+  /* ===== CIERRE ===== */
+  .cierre .cita-final{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.2rem,3.2vw,1.8rem);max-width:32ch;line-height:1.5}
+  .boton-cta{
+    display:inline-block;margin-top:3rem;padding:1rem 3rem;
+    border:1px solid currentColor;color:inherit;text-decoration:none;
+    font-size:.78rem;letter-spacing:.38em;text-transform:uppercase;font-weight:400;
+    transition:background .4s ease,color .4s ease;
+  }
+  body.fase-amore .boton-cta:hover{background:var(--tinta);color:var(--crema)}
+
+  footer{padding:3.2rem 8vw;text-align:center;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;opacity:.55}
+  footer .dominio{font-family:'Cinzel',serif;letter-spacing:.2em}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .revela{opacity:1;transform:none}
+  }
+
+  /* ===== WHATSAPP FLOTANTE ===== */
+  .wa-flotante{
+    position:fixed;bottom:24px;right:24px;z-index:90;
+    width:58px;height:58px;border-radius:50%;
+    background:#25d366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);text-decoration:none;
+    transition:transform .3s ease,box-shadow .3s ease;
+  }
+  .wa-flotante:hover{transform:scale(1.1);box-shadow:0 12px 30px rgba(37,211,102,.45)}
+  .wa-flotante svg{width:30px;height:30px;fill:#fff}
+</style>
+</head>
+<body class="fase-nero">
+
+<nav>
+  <a class="logo-nav" href="index.html">
+    <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="54" cy="14" rx="26" ry="7" fill="none" stroke="#c9974a" stroke-width="4"/>
+      <path d="M22 42 h64 v8 c0 26 -13 44 -32 44 s-32 -18 -32 -44 z" fill="none" stroke="currentColor" stroke-width="5"/>
+      <path d="M86 48 c14 0 16 22 0 26" fill="none" stroke="currentColor" stroke-width="5"/>
+      <path d="M54 96 c0 14 18 12 22 22 m0 0 l-8 -2 m8 2 l2 -8" fill="none" stroke="#c2452d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>DOLCE DIAVOLO</span>
+  </a>
+  <div style="display:flex;gap:1.8rem">
+    <a class="volver" href="index.html">Inicio</a>
+    <a class="volver" href="tienda.html">Tienda</a>
+    <a class="volver" href="origen.html">Origen</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <h1><span class="rit">I RITUALI</span><br>DEL CAFFÈ</h1>
+  <div class="sotto">Las preparaciones</div>
+  <p class="intro">Siete formas de invocar el mismo grano. Empezamos en el infierno del espresso y terminamos en el paraíso del cold brew.</p>
+  <div class="escala">
+    <span>😈</span><div class="linea"></div><span>😇</span>
+  </div>
+  <div class="desliza">desliza ↓</div>
+</section>
+
+<!-- ============ I. ESPRESSO ============ -->
+<section class="ritual acento-inferno" data-fase="fase-nero">
+  <div class="contenido revela">
+    <div class="grado">I · Il più diabolico</div>
+    <h2>ESPRESSO</h2>
+    <div class="alias">El alma concentrada del diablo</div>
+    <p class="historia">Nueve bares de presión, veinticinco segundos, treinta mililitros de intensidad pura. Italia lo inventó; Colombia le puso el grano. Es la prueba de fuego de cualquier café: aquí no hay dónde esconderse.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:2</div><div class="clave">ratio café:agua</div></div>
+      <div class="item"><div class="valor">Fina</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">25–30 s</div><div class="clave">extracción</div></div>
+      <div class="item"><div class="valor">93 °C</div><div class="clave">temperatura</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Dosifica 18 g de café molido fino en el portafiltro.</span></div>
+      <div class="paso"><span class="n">2</span><span>Nivela y compacta con el tamper, presión firme y pareja.</span></div>
+      <div class="paso"><span class="n">3</span><span>Extrae 36 g de bebida en 25–30 segundos.</span></div>
+      <div class="paso"><span class="n">4</span><span>Busca la crema color avellana: la firma del diablo bien hecho.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ II. MOKA ============ -->
+<section class="ritual acento-inferno" data-fase="fase-inferno">
+  <div class="contenido revela">
+    <div class="grado">II · Il fuoco di casa</div>
+    <h2>MOKA ITALIANA</h2>
+    <div class="alias">El infierno doméstico</div>
+    <p class="historia">La cafetera octagonal de Bialetti que vive en cada cocina italiana desde 1933. Vapor a presión subiendo por una columna: fuego, metal y aroma llenando la casa. El ritual italiano por excelencia.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:10</div><div class="clave">ratio café:agua</div></div>
+      <div class="item"><div class="valor">Media-fina</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">4–5 min</div><div class="clave">en fuego</div></div>
+      <div class="item"><div class="valor">Fuego bajo</div><div class="clave">intensidad</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Llena la base con agua caliente hasta la válvula.</span></div>
+      <div class="paso"><span class="n">2</span><span>Pon el café en el filtro sin compactar, a ras.</span></div>
+      <div class="paso"><span class="n">3</span><span>Cierra y lleva a fuego bajo con la tapa abierta.</span></div>
+      <div class="paso"><span class="n">4</span><span>Cuando borbotee y el flujo se vuelva claro, retira. Nunca dejes que hierva.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ III. TINTO CAMPESINO ============ -->
+<section class="ritual acento-inferno" data-fase="fase-inferno">
+  <div class="contenido revela">
+    <div class="grado">III · L'anima colombiana</div>
+    <h2>TINTO CAMPESINO</h2>
+    <div class="alias">La media de tela — el origen de todo</div>
+    <p class="historia">Antes del V60 y la Chemex, Colombia ya filtraba café en tela. La olleta de peltre, la media colada mil veces, el tinto cerrero del amanecer en la finca. Es el método más antiguo de la casa y el que más sabe a tierra.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:14</div><div class="clave">ratio café:agua</div></div>
+      <div class="item"><div class="valor">Media</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">3–4 min</div><div class="clave">colado</div></div>
+      <div class="item"><div class="valor">Olleta</div><div class="clave">herramienta</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Hierve el agua en la olleta y retírala del fuego.</span></div>
+      <div class="paso"><span class="n">2</span><span>Agrega el café molido directo al agua y revuelve una vez.</span></div>
+      <div class="paso"><span class="n">3</span><span>Deja reposar un minuto y cuela por la media de tela.</span></div>
+      <div class="paso"><span class="n">4</span><span>Sirve calientico. Con panela, se vuelve aguapanela con café: gloria pura.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IV. PRENSA FRANCESA ============ -->
+<section class="ritual" data-fase="fase-medio">
+  <div class="contenido revela">
+    <div class="grado">IV · Il purgatorio</div>
+    <h2>PRENSA FRANCESA</h2>
+    <div class="alias">El punto medio del viaje</div>
+    <p class="historia">Inmersión total: el café y el agua conviven cuatro minutos sin filtros de papel que les roben los aceites. Cuerpo completo, textura sedosa. Ni diablo ni ángel: purgatorio delicioso.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:15</div><div class="clave">ratio café:agua</div></div>
+      <div class="item"><div class="valor">Gruesa</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">4 min</div><div class="clave">inmersión</div></div>
+      <div class="item"><div class="valor">94 °C</div><div class="clave">temperatura</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Agrega 30 g de café molido grueso y 450 ml de agua.</span></div>
+      <div class="paso"><span class="n">2</span><span>Revuelve suave, tapa sin presionar y espera 4 minutos.</span></div>
+      <div class="paso"><span class="n">3</span><span>Rompe la costra, retira la espuma superficial.</span></div>
+      <div class="paso"><span class="n">4</span><span>Baja el émbolo despacio y sirve de inmediato.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ V. V60 ============ -->
+<section class="ritual" data-fase="fase-angelo">
+  <div class="contenido revela">
+    <div class="grado">V · La purezza</div>
+    <h2>V60</h2>
+    <div class="alias">Donde el café se vuelve transparente</div>
+    <p class="historia">El cono japonés de 60 grados que convirtió el filtrado en ciencia. Taza limpia, brillante, donde cada nota del origen colombiano se escucha como instrumento solista. El método favorito de los catadores.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:16</div><div class="clave">ratio café:agua</div></div>
+      <div class="item"><div class="valor">Media</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">2:30–3 min</div><div class="clave">vertido total</div></div>
+      <div class="item"><div class="valor">92 °C</div><div class="clave">temperatura</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Enjuaga el filtro con agua caliente y descártala.</span></div>
+      <div class="paso"><span class="n">2</span><span>Agrega 22 g de café y vierte 44 ml para el bloom: 35 segundos.</span></div>
+      <div class="paso"><span class="n">3</span><span>Vierte en círculos lentos hasta 350 ml en dos o tres tandas.</span></div>
+      <div class="paso"><span class="n">4</span><span>El goteo debe terminar antes de los 3 minutos. Taza limpia, alma pura.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VI. CHEMEX ============ -->
+<section class="ritual" data-fase="fase-angelo">
+  <div class="contenido revela">
+    <div class="grado">VI · L'eleganza</div>
+    <h2>CHEMEX</h2>
+    <div class="alias">El ángel de vidrio</div>
+    <p class="historia">Diseñada por un químico en 1941 y exhibida en el MoMA de Nueva York. Su filtro grueso produce la taza más limpia de todas: ligera, dulce, casi etérea. Café para compartir y para mirar.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:16</div><div class="clave">ratio café:agua</div></div>
+      <div class="item"><div class="valor">Media-gruesa</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">4–5 min</div><div class="clave">vertido total</div></div>
+      <div class="item"><div class="valor">93 °C</div><div class="clave">temperatura</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Coloca el filtro con el lado triple hacia el vertedor y enjuágalo.</span></div>
+      <div class="paso"><span class="n">2</span><span>Agrega 34 g de café, haz el bloom con 70 ml: 40 segundos.</span></div>
+      <div class="paso"><span class="n">3</span><span>Vierte en espiral hasta completar 550 ml.</span></div>
+      <div class="paso"><span class="n">4</span><span>Retira el filtro, gira la jarra suavemente y sirve.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VII. COLD BREW ============ -->
+<section class="ritual acento-oro" data-fase="fase-amore">
+  <div class="contenido revela">
+    <div class="grado">VII · Il paradiso</div>
+    <h2>COLD BREW</h2>
+    <div class="alias">Dulce como el amor, frío como la calma</div>
+    <p class="historia">Doce horas de paciencia en agua fría. Sin calor no hay amargor: solo quedan el chocolate, la panela y la fruta del grano. El método más angelical, hecho para el clima de tierra caliente.</p>
+    <div class="ficha">
+      <div class="item"><div class="valor">1:8</div><div class="clave">ratio (concentrado)</div></div>
+      <div class="item"><div class="valor">Gruesa</div><div class="clave">molienda</div></div>
+      <div class="item"><div class="valor">12–16 h</div><div class="clave">inmersión fría</div></div>
+      <div class="item"><div class="valor">Nevera</div><div class="clave">temperatura</div></div>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><span>Mezcla 100 g de café grueso con 800 ml de agua fría.</span></div>
+      <div class="paso"><span class="n">2</span><span>Tapa y lleva a la nevera entre 12 y 16 horas.</span></div>
+      <div class="paso"><span class="n">3</span><span>Filtra por tela o papel. Obtienes un concentrado.</span></div>
+      <div class="paso"><span class="n">4</span><span>Sirve sobre hielo, diluido 1:1 con agua o leche. Dura una semana refrigerado.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="cierre" data-fase="fase-amore">
+  <div class="revela">
+    <div class="ojo">Il viaggio è completo</div>
+    <p class="cita-final">«Siete rituales, un solo grano. Del infierno al paraíso, siempre colombiano.»</p>
+    <a class="boton-cta" href="index.html">Conoce nuestros tostados</a>
+  </div>
+</section>
+
+<footer data-fase="fase-amore">
+  <div class="dominio">DOLCEDIAVOLO.COM</div>
+  <div style="margin-top:.6rem">Caffè colombiano · Hecho en Colombia 🇨🇴</div>
+</footer>
+
+<script>
+  const fases = ["fase-nero","fase-inferno","fase-medio","fase-angelo","fase-amore"];
+  const obsFase = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => {
+      if (e.isIntersecting) {
+        const fase = e.target.dataset.fase;
+        if (fase) {
+          document.body.classList.remove(...fases);
+          document.body.classList.add(fase);
+        }
+      }
+    });
+  }, { threshold: 0.45 });
+  document.querySelectorAll("[data-fase]").forEach(s => obsFase.observe(s));
+
+  const obsRevela = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("visible");
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll(".revela").forEach(el => obsRevela.observe(el));
+</script>
+
+<a class="wa-flotante" href="https://wa.me/573001234567?text=Hola%20Dolce%20Diavolo%20%E2%98%95%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 .8C7.6.8.8 7.6.8 16c0 2.7.7 5.3 2 7.6L.8 31.2l7.8-2c2.2 1.2 4.7 1.9 7.4 1.9 8.4 0 15.2-6.8 15.2-15.2S24.4.8 16 .8zm0 27.7c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.6 1.2 1.2-4.5-.3-.5c-1.3-2-2-4.4-2-6.7C3.1 8.9 8.9 3.1 16 3.1S28.9 8.9 28.9 16 23.1 28.5 16 28.5zm7-9.4c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.5-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/></svg>
+</a>
+</body>
+</html>
